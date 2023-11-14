@@ -13,19 +13,17 @@ function App() {
   useEffect(() => {
     console.log("use effect is running");
     const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=S6IfkyITSFd8G6d4sWt0gfjHEFGk68w2&q=${searchGifCategory}`;
-   //const endpoint = `http://www.omdbapi.com/?apikey=8919e0eb&t=${searchGifCategory}`;
-
-    // Make api call
 
     async function getGif() {
       try {
+        console.log('try block in motion')
         setLoading(true);
 
         const response = await fetch(endpoint);
         const body = await response.json();
 
-        console.log(`body ${body}`);
-        setGif(body);
+        console.log(`body ${body.data[0]}`);
+        setGif(body.data[0]);
 
         setLoading(false);
       } catch (err) {
